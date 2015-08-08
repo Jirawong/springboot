@@ -1,6 +1,6 @@
 package com.linksinnovation.springboot.controller;
 
-import com.linksinnovation.springboot.dto.Comment;
+import com.linksinnovation.springboot.domain.Comment;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

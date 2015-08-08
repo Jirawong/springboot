@@ -1,6 +1,6 @@
 package com.linksinnovation.springboot.controller;
 
-import com.linksinnovation.springboot.dto.Comment;
+import com.linksinnovation.springboot.domain.Comment;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
