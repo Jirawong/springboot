@@ -31,7 +31,11 @@ public class WebMvcConfig extends WebSecurityConfigurerAdapter{
                     .anyRequest()
                     .authenticated()
                     .and()
-                .httpBasic();
+                .formLogin()
+                    .permitAll()
+                    .and()
+                .logout()
+                    .permitAll();
     }
 
     @Autowired
