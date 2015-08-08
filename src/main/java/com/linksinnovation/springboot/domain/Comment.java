@@ -3,6 +3,8 @@ package com.linksinnovation.springboot.domain;
 import com.linksinnovation.springboot.validate.StartWith;
 import java.util.Objects;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -14,8 +16,9 @@ import org.hibernate.validator.constraints.NotBlank;
 public class Comment {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    @StartWith(value = "a", message = "xxxxx")
+    //@StartWith(value = "a", message = "xxxxx")
     @NotBlank(message = "comment not blank")
     private String comment;
     @NotBlank
