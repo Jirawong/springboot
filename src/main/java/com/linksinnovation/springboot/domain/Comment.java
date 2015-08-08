@@ -1,20 +1,33 @@
 package com.linksinnovation.springboot.domain;
 
 import com.linksinnovation.springboot.validate.StartWith;
-import javax.validation.constraints.NotNull;
+import java.util.Objects;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import org.hibernate.validator.constraints.NotBlank;
 
 /**
  *
  * @author Jirawong Wongdokpuang <greannetwork@gmail.com>
  */
+@Entity
 public class Comment {
-    @StartWith(value = "a",message = "xxxxx")
+
+    @Id
+    private Integer id;
+    @StartWith(value = "a", message = "xxxxx")
     @NotBlank(message = "comment not blank")
     private String comment;
     @NotBlank
-    @NotNull
-    private String author;   
+    private String author;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getComment() {
         return comment;
@@ -31,6 +44,27 @@ public class Comment {
     public void setAuthor(String author) {
         this.author = author;
     }
-    
-    
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 19 * hash + Objects.hashCode(this.id);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Comment other = (Comment) obj;
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        return true;
+    }
+
 }
