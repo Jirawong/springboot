@@ -38,4 +38,24 @@ public class HomeRestController {
         return commentRepository.findAll();
     }
     
+    @RequestMapping(method = RequestMethod.PUT)
+    public Comment update(@Validated @RequestBody Comment comment){
+        return commentRepository.save(comment);
+    }
+    
+    @RequestMapping(value = "/find/{id}")
+    public Comment fineOne(@PathVariable("id") Integer id){
+        return commentRepository.findOne(id);
+    }
+    
+    @RequestMapping(value = "/search/{comment}",method = RequestMethod.GET)
+    public List<Comment> searchComment(@PathVariable("comment") String keyword){
+        return commentRepository.findByCommentLike("%"+keyword+"%");
+    }
+    
+    @RequestMapping(value = "/find/{comment}/{author}")
+    public List<Comment> findCommentAndAuthor(@PathVariable("comment") String comment,@PathVariable("author") String author){
+        return commentRepository.findByCommentAndAuthor(comment, author);
+    }
+    
 }
