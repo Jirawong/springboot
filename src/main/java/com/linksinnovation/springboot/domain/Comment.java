@@ -23,6 +23,15 @@ public class Comment {
     private String comment;
     @NotBlank
     private String author;
+    
+    public Comment(){
+        
+    }
+
+    public Comment(String comment, String author) {
+        this.comment = comment;
+        this.author = author;
+    }
 
     public Integer getId() {
         return id;

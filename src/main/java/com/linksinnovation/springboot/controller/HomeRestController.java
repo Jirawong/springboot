@@ -2,6 +2,7 @@ package com.linksinnovation.springboot.controller;
 
 import com.linksinnovation.springboot.domain.Comment;
 import com.linksinnovation.springboot.repository.CommentRepository;
+import com.linksinnovation.springboot.service.CommentService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
@@ -22,10 +23,13 @@ public class HomeRestController {
 
     @Autowired
     private CommentRepository commentRepository;
+    
+    @Autowired
+    private CommentService commentService;
 
     @RequestMapping(method = RequestMethod.GET)
     public List<Comment> listAll() {
-        return commentRepository.findAll();
+        return commentService.findAll();
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
