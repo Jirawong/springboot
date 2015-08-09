@@ -1,5 +1,6 @@
 package com.linksinnovation.springboot.service;
 
+import com.linksinnovation.springboot.dto.Users;
 import com.linksinnovation.springboot.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,7 +19,9 @@ public class UserDetailsService implements org.springframework.security.core.use
     
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return userRepository.findOne(username);
+        Users findOne = userRepository.findOne(username);
+        System.out.println(findOne.getUsername() + " "+findOne.getAuthorities());
+        return findOne;
     }
     
 }

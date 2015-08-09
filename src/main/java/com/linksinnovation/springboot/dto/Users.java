@@ -2,9 +2,12 @@ package com.linksinnovation.springboot.dto;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -19,6 +22,9 @@ public class Users implements UserDetails{
     @Column(name = "xxxxx")
     private String username;
     private String password;
+    
+    @OneToMany(fetch = FetchType.EAGER)
+    private Set<Authority> authoritys;
 
     public void setUsername(String username) {
         this.username = username;
@@ -27,12 +33,18 @@ public class Users implements UserDetails{
     public void setPassword(String password) {
         this.password = password;
     }
-    
-    
+
+    public Set<Authority> getAuthoritys() {
+        return authoritys;
+    }
+
+    public void setAuthoritys(Set<Authority> authoritys) {
+        this.authoritys = authoritys;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.EMPTY_LIST;
+        return authoritys;
     }
 
     @Override
