@@ -1,6 +1,9 @@
 package com.linksinnovation.springboot.controller;
 
 import com.linksinnovation.springboot.dto.Comment;
+import com.linksinnovation.springboot.repository.CommentRepository;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,20 +18,17 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api")
 public class HomeRestController {
     
+    @Autowired
+    private CommentRepository commentRepository;
+    
     @RequestMapping(method = RequestMethod.GET)
-    public Comment home(){
-        Comment comment = new Comment();
-        comment.setComment("this is comment");
-        comment.setAuthor("this is author");
-        return comment;
+    public List<Comment> home(){    
+        return commentRepository.findAll();
     }
     
     @RequestMapping(method = RequestMethod.POST)
     public Comment save(@Validated @RequestBody Comment comment ){
-        
-
-        
-        return comment;
+        return commentRepository.save(comment);
     }
     
 }
